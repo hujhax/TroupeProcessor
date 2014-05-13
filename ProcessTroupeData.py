@@ -53,7 +53,8 @@ def process_row(troupe_dict, row):
 def process_troupe_data(filename):
     table = load_troupe_info(filename)[1:]  # remove headers
     troupe_dict = {}
-    troupe_dict = {row[1]: process_row(troupe_dict, row) for row in table}
+    troupe_dict = {row[1]: process_row(troupe_dict, row)
+                   for row in table if row[1]}
     return troupe_dict
 
 if __name__ == '__main__':
@@ -80,4 +81,3 @@ if __name__ == '__main__':
         # add items to the set
     # add all videos to a set
     # output all of these data as a csv row
-
