@@ -56,8 +56,12 @@ def process_troupe_data(filename):
     troupe_dict = {row[1]: process_row(troupe_dict, row) for row in table}
     return troupe_dict
 
-
-if __name__ == "__main__":
+if __name__ == '__main__':
+    import sys
+    if sys.argv[1:]:
+        print process_troupe_data(sys.argv[1])
+    else:
+        print __doc__
 
 # for each row of data
     # add the data to troupe_dict[troupe_name]
