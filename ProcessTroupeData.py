@@ -25,7 +25,7 @@ def is_url(string):
 
 def process_row(troupe_dict, row):
     if row[1] in troupe_dict:
-    	data = troupe_dict[row[1]]
+        data = troupe_dict[row[1]]
     else:
         data = {}
 
@@ -51,7 +51,7 @@ def process_row(troupe_dict, row):
 
 
 def process_troupe_data(filename):
-    table = load_troupe_info(filename)[1:] # remove headers
+    table = load_troupe_info(filename)[1:]  # remove headers
     troupe_dict = {}
     troupe_dict = {row[1]: process_row(troupe_dict, row) for row in table}
     return troupe_dict
