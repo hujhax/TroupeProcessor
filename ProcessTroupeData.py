@@ -1,5 +1,17 @@
-# open the ods file
+"""Process Troupe Data
+
+This takes in an ODS file of troupe applications to the Hideout Theatre,
+collates them into a single dictionary of troupes->troupe data, and then
+converts that to a set of files for the AIC Wiki.
+
+Command line usage:
+$ python ProcessTroupeData.py filename
+"""
+
 from ODSReader import *
+
+# open the ods file
+
 
 def load_troupe_info(filename):
     doc = ODSReader(filename)
