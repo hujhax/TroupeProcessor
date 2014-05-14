@@ -24,7 +24,7 @@ class SimpleValidDatabases(unittest.TestCase):
         """We should be able to process a one-row database."""
 
         test_data = [("site", "www.site1"),
-                     ("cast", "cast1"),
+                     ("cast", {"cast1"}),
                      ("blurb", "blurb1"),
                      ("deal", "deal1"),
                      ("photo", "www.photo1"),
@@ -35,7 +35,7 @@ class SimpleValidDatabases(unittest.TestCase):
         """Two rows describing one troupe should result in one item."""
 
         test_data = [("site", "www.site2"),
-                     ("cast", "cast1"),
+                     ("cast", {"cast1"}),
                      ("blurb", "blurb1"),
                      ("deal", "deal1"),
                      ("photo", "www.photo1"),
@@ -46,7 +46,7 @@ class SimpleValidDatabases(unittest.TestCase):
         """We should ignore invalid URLs for site/photo/video"""
 
         test_data = [("site", "no value"),
-                     ("cast", "cast1"),
+                     ("cast", {"cast1"}),
                      ("photo", "no value"),
                      ("video", "no value")]
         self.validate_troupe_data("test/IgnoreInvalidURLs.ods", "name1",
