@@ -4,17 +4,17 @@ import unittest
 
 class SimpleValidDatabases(unittest.TestCase):
 
-    def validate_troupe_data(self, file_name, name, test_data,
+    def validate_troupe_data(self, file_name, troupe_name, troupe_data,
                              num_troupes=None):
         dict = ProcessTroupeData.process_troupe_data(file_name)
 
-        self.assertTrue(name in dict)
-        dict_data = dict[name]
+        self.assertTrue(troupe_name in dict)
+        dict_data = dict[troupe_name]
 
         if num_troupes:
             self.assertEqual(len(dict), num_troupes)
 
-        for k, v in test_data:
+        for k, v in troupe_data:
             try:
                 self.assertEqual(dict_data[k], v)
             except KeyError:
