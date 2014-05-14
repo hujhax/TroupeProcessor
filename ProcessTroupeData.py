@@ -55,8 +55,9 @@ def process_row(troupe_dict, row):
 def process_troupe_data(filename):
     table = load_troupe_info(filename)[1:]  # remove headers
     troupe_dict = {}
-    troupe_dict = {row[1]: process_row(troupe_dict, row)
-                   for row in table if row[1]}
+    for row in table:
+        if row[1]:
+            troupe_dict[row[1]] = process_row(troupe_dict, row)
     return troupe_dict
 
 if __name__ == '__main__':
