@@ -8,12 +8,9 @@ Command line usage:
 $ python ProcessTroupeData.py filename
 """
 
-from ODSReader import *
-
-# open the ods file
-
 
 def load_troupe_info(filename):
+    from ODSReader import ODSReader
     doc = ODSReader(filename)
     troupeDatabase = doc.getSheet("avail")
     return troupeDatabase
