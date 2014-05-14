@@ -11,3 +11,6 @@ class SimpleValidDatabases(unittest.TestCase):
             "site1", "cast1", "blurb1", "deal1", "photo1", "video1"]
         desired_result = ProcessTroupeData.TroupeFields._make(desired_fields)
         self.assertEqual(troupe_dict["name1"], desired_result)
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)
