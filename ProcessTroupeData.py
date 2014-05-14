@@ -20,14 +20,20 @@ def is_url(string):
     return 'www' in string or 'http' in string
 
 
+def set_first_valid_url(data, field_name, new_string):
+    if not field_name in data and is_url(new_string):
+        data[field_name] = new_string
+
+
 def process_row(troupe_dict, row):
     if row[1] in troupe_dict:
         data = troupe_dict[row[1]]
     else:
         data = {}
 
-    if not 'site' in data and is_url(row[2]):
-        data['site'] = row[2]
+    set_first_valid_url(data, 'site', row[2])
+    set_first_valid_url(data, 'photo', row[19])
+    set_first_valid_url(data, 'video', row[20])
 
     if not 'cast' in data:
         data['cast'] = row[4]
@@ -37,12 +43,6 @@ def process_row(troupe_dict, row):
 
     if not 'deal' in data:
         data['deal'] = row[13]
-
-    if not 'photo' in data and is_url(row[19]):
-        data['photo'] = row[19]
-
-    if not 'video' in data and is_url(row[20]):
-        data['video'] = row[20]
 
     return data
 
