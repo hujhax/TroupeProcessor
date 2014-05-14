@@ -4,13 +4,25 @@ import unittest
 
 class SimpleValidDatabases(unittest.TestCase):
 
-    def oneRowDatabase(self):
-        """ProcessTroupeData should convert a one-row database to a tuple."""
-        troupe_dict = ProcessTroupeData.processTroupeData("test/OneRow.ods")
-        desired_fields = [
-            "site1", "cast1", "blurb1", "deal1", "photo1", "video1"]
-        desired_result = ProcessTroupeData.TroupeFields._make(desired_fields)
-        self.assertEqual(troupe_dict["name1"], desired_result)
+    def validate_troupe_data(self, file_name, name, test_data):
+        dict = ProcessTroupeData.process_troupe_data(file_name)
+
+        self.assertTrue(name in dict)
+        dict_data = dict[name]
+
+        for k, v in test_data:
+            self.assertEqual(dict_data[k], v)
+
+    def test_one_row_database(self):
+        """We should be able to process a one-row database."""
+
+        test_data = [("site", "www.site1"),
+                     ("cast", "cast1"),
+                     ("blurb", "blurb1"),
+                     ("deal", "deal1"),
+                     ("photo", "www.photo1"),
+                     ("video", "www.video1")]
+        self.validate_troupe_data("test/OneRow.ods", "name1", test_data)
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
