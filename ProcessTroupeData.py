@@ -64,6 +64,9 @@ def process_row(troupe_dict, row):
 
     collate_cast(data, 'cast', row[4])
 
+    # TODO: set the year stuff
+    # TODO: convert videos to a set
+    # TODO: incorporate the "have you ever performed before?" flag
     return data
 
 
