@@ -52,5 +52,13 @@ class SimpleValidDatabases(unittest.TestCase):
         self.validate_troupe_data("test/IgnoreInvalidURLs.ods", "name1",
                                   test_data)
 
+    def test_use_longer_strings(self):
+        """We should favor longer strings for the blurb and deal fields."""
+
+        test_data = [("blurb", "longer blurb"),
+                     ("deal", "longer deal")]
+        self.validate_troupe_data("test/LongerStrings.ods", "name1",
+                                  test_data)
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
