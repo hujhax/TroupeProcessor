@@ -33,6 +33,22 @@ def set_longest_string(data, field_name, new_string):
     data[field_name] = new_string
 
 
+def collate_cast(data, field_name, new_string):
+    import re
+    if not new_string:
+        return
+    # Handle AND
+    new_string = re.sub(r'\sAND\s', ' & ', new_string, flags=re.IGNORECASE)
+    new_cast_set = set(re.split('[&,\n]', new_string))  # set of split-up names
+    new_cast_set = {name.strip() for name in new_cast_set}  # strip whitespace
+    new_cast_set = {name for name in new_cast_set if name}  # kill empty
+
+    if field_name in data:
+        data[field_name] = data[field_name] | new_cast_set
+    else:
+        data[field_name] = new_cast_set
+
+
 def process_row(troupe_dict, row):
     if row[1] in troupe_dict:
         data = troupe_dict[row[1]]
@@ -46,8 +62,7 @@ def process_row(troupe_dict, row):
     set_longest_string(data, 'blurb', row[7])
     set_longest_string(data, 'deal', row[13])
 
-    if not 'cast' in data:
-        data['cast'] = row[4]
+    collate_cast(data, 'cast', row[4])
 
     return data
 
