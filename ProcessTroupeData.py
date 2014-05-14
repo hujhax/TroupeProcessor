@@ -25,6 +25,14 @@ def set_first_valid_url(data, field_name, new_string):
         data[field_name] = new_string
 
 
+def set_longest_string(data, field_name, new_string):
+    if not new_string:
+        return
+    if field_name in data and len(data[field_name]) > len(new_string):
+        return
+    data[field_name] = new_string
+
+
 def process_row(troupe_dict, row):
     if row[1] in troupe_dict:
         data = troupe_dict[row[1]]
@@ -35,14 +43,11 @@ def process_row(troupe_dict, row):
     set_first_valid_url(data, 'photo', row[19])
     set_first_valid_url(data, 'video', row[20])
 
+    set_longest_string(data, 'blurb', row[7])
+    set_longest_string(data, 'deal', row[13])
+
     if not 'cast' in data:
         data['cast'] = row[4]
-
-    if not 'blurb' in data:
-        data['blurb'] = row[7]
-
-    if not 'deal' in data:
-        data['deal'] = row[13]
 
     return data
 
