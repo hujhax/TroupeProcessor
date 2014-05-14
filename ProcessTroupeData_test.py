@@ -60,5 +60,21 @@ class SimpleValidDatabases(unittest.TestCase):
         self.validate_troupe_data("test/LongerStrings.ods", "name1",
                                   test_data)
 
+    def test_casts(self):
+        """We should load and collate cast lists for each troupe."""
+
+        separators_data = [("cast", {"A", "B", "C", "D", "E", "F"})]
+        self.validate_troupe_data("test/Casts.ods", "separators",
+                                  separators_data)
+
+        whitespace_data = [("cast", {"A"})]
+        self.validate_troupe_data("test/Casts.ods", "whitespace",
+                                  whitespace_data)
+
+        union_data = [("cast", {"A", "B", "C"})]
+        self.validate_troupe_data("test/Casts.ods", "union",
+                                  union_data)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
