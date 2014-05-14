@@ -13,7 +13,7 @@ class SimpleValidDatabases(unittest.TestCase):
         for k, v in test_data:
             self.assertEqual(dict_data[k], v)
 
-    def test_one_row_database(self):
+    def test_one_row(self):
         """We should be able to process a one-row database."""
 
         test_data = [("site", "www.site1"),
