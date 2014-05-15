@@ -75,6 +75,13 @@ class SimpleValidDatabases(unittest.TestCase):
         self.validate_troupe_data("test/Casts.ods", "union",
                                   union_data)
 
+    def test_start_end_years(self):
+        """We should pick the min and max years from a troupe's entries."""
+
+        test_data = [("start_year", "2005"),
+                     ("end_year", "2009")]
+        self.validate_troupe_data("test/StartEndYears.ods", "name1",
+                                  test_data)
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
