@@ -49,6 +49,22 @@ def collate_cast(data, field_name, new_string):
         data[field_name] = new_cast_set
 
 
+def set_start_year(data, field_name, new_string):
+    if not new_string:
+        return
+
+    if not field_name in data or int(data[field_name]) > int(new_string):
+        data[field_name] = new_string
+
+
+def set_end_year(data, field_name, new_string):
+    if not new_string:
+        return
+
+    if not field_name in data or int(data[field_name]) < int(new_string):
+        data[field_name] = new_string
+
+
 def process_row(troupe_dict, row):
     if row[1] in troupe_dict:
         data = troupe_dict[row[1]]
@@ -63,6 +79,9 @@ def process_row(troupe_dict, row):
     set_longest_string(data, 'deal', row[13])
 
     collate_cast(data, 'cast', row[4])
+
+    set_start_year(data, 'start_year', row[22])
+    set_end_year(data, 'end_year', row[22])
 
     # TODO: set the year stuff
     # TODO: convert videos to a set
