@@ -48,7 +48,7 @@ class ODSReader:
 					repeat = 1
 					
 				ps = cell.getElementsByType(P)
-				textContent = ""
+				textItems = []
 								
 				# for each text/text:span node
 				for p in ps:
@@ -56,12 +56,13 @@ class ODSReader:
                                                 if (n.nodeType == 1 and n.tagName == "text:span"):
 							for c in n.childNodes:
 								if (c.nodeType == 3):
-									textContent = textContent + unicode(c.data)
+									textItems.append(c.data)
 							
 						if (n.nodeType == 3):
-							textContent = textContent + unicode(n.data)
+							textItems.append(n.data)
 					
-				if(textContent):
+				if(textItems):
+					textContent = "\n".join(textItems)
 					if(textContent[0] != "#"): # ignore comments cells
 						for rr in range(int(repeat)): # repeated?
 							arrCells.append(textContent)
