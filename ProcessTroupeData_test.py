@@ -63,7 +63,7 @@ class SimpleValidDatabases(unittest.TestCase):
     def test_casts(self):
         """We should load and collate cast lists for each troupe."""
 
-        separators_data = [("cast", {"A", "B", "C", "D", "E", "F"})]
+        separators_data = [("cast", {"A", "B", "C", "D", "E", "F", "G", "H"})]
         self.validate_troupe_data("test/Casts.ods", "separators",
                                   separators_data)
 
