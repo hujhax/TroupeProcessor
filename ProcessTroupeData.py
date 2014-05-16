@@ -83,7 +83,6 @@ def process_row(troupe_dict, row):
     set_start_year(data, 'start_year', row[22])
     set_end_year(data, 'end_year', row[22])
 
-    # TODO: set the year stuff
     # TODO: convert videos to a set
     # TODO: incorporate the "have you ever performed before?" flag
     return data
@@ -103,21 +102,3 @@ if __name__ == '__main__':
         print process_troupe_data(sys.argv[1])
     else:
         print __doc__
-
-# for each row of data
-    # add the data to troupe_dict[troupe_name]
-        # (we'll be creating an array of rows for each name)
-# for each name in troupe_dict
-    # set URL to the first URL field with www or http in the text
-    # set "photo" to be the first photo field with www or http in the text
-    # set "deal" to the longest deal string
-    # set "blurb" to the longest blurb string
-    # iterate through years
-        # if minyear is blank or > year, minyear = year
-        # if maxyear is blank or < year, maxyear = year
-    # set cast to a null set
-    # for each cast list
-        # convert string to an array
-        # add items to the set
-    # add all videos to a set
-    # output all of these data as a csv row
