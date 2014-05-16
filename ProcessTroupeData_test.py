@@ -83,5 +83,13 @@ class SimpleValidDatabases(unittest.TestCase):
         self.validate_troupe_data("test/StartEndYears.ods", "name1",
                                   test_data)
 
+    def test_video_accumulation(self):
+        """We should accumulate all troupe videos into a set."""
+
+        test_data = [("video", {"www.a", "www.b", "www.c"})]
+
+        self.validate_troupe_data("test/VideoSet.ods", "name1",
+                                  test_data)
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
