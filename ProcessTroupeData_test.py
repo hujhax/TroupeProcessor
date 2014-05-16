@@ -28,7 +28,7 @@ class SimpleValidDatabases(unittest.TestCase):
                      ("blurb", "blurb1"),
                      ("deal", "deal1"),
                      ("photo", "www.photo1"),
-                     ("video", "www.video1")]
+                     ("video", {"www.video1"})]
         self.validate_troupe_data("test/OneRow.ods", "name1", test_data, 1)
 
     def test_two_rows_one_troupe(self):
@@ -39,7 +39,7 @@ class SimpleValidDatabases(unittest.TestCase):
                      ("blurb", "blurb1"),
                      ("deal", "deal1"),
                      ("photo", "www.photo1"),
-                     ("video", "www.video1")]
+                     ("video", {"www.video1"})]
         self.validate_troupe_data("test/TwoRows.ods", "name1", test_data, 1)
 
     def test_ignore_invalid_urls(self):
