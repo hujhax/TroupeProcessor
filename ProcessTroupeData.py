@@ -74,6 +74,18 @@ def set_end_year(data, field_name, new_string):
         data[field_name] = new_string
 
 
+def set_yes_no_field(data, field_name, new_string):
+    if not new_string:
+        return
+    if new_string.find('n') != -1:  # "no"
+        return
+    if new_string.find('m') != -1:  # "maybe"
+        return
+    if new_string.find('y') == -1:  # no "yes"
+        return
+    data[field_name] = 'y'
+
+
 def process_row(troupe_dict, row):
     if row[1] in troupe_dict:
         data = troupe_dict[row[1]]
@@ -91,6 +103,8 @@ def process_row(troupe_dict, row):
 
     set_start_year(data, 'start_year', row[22])
     set_end_year(data, 'end_year', row[22])
+
+    set_yes_no_field(data, 'performed_before', row[11])
 
     # TODO: convert videos to a set
     # TODO: incorporate the "have you ever performed before?" flag
