@@ -91,5 +91,19 @@ class SimpleValidDatabases(unittest.TestCase):
         self.validate_troupe_data("test/VideoSet.ods", "name1",
                                   test_data)
 
+    def test_performed_before(self):
+        """We should note if the troupe has ever performed before."""
+
+        test_1 = [("performed_before", "y")]
+        test_2 = [("performed_before", "no value")]
+        test_3 = [("performed_before", "y")]
+
+        self.validate_troupe_data("test/PerformedBefore.ods", "yestroupe1",
+                                  test_1)
+        self.validate_troupe_data("test/PerformedBefore.ods", "notroupe",
+                                  test_2)
+        self.validate_troupe_data("test/PerformedBefore.ods", "yestroupe2",
+                                  test_3)
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
