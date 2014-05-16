@@ -25,6 +25,15 @@ def set_first_valid_url(data, field_name, new_string):
         data[field_name] = new_string
 
 
+def collect_valid_urls(data, field_name, new_string):
+    if is_url(new_string):
+        new_item_set = set([new_string])
+        if field_name in data:
+            data[field_name] = data[field_name] | new_item_set
+        else:
+            data[field_name] = new_item_set
+
+
 def set_longest_string(data, field_name, new_string):
     if not new_string:
         return
@@ -73,7 +82,7 @@ def process_row(troupe_dict, row):
 
     set_first_valid_url(data, 'site', row[2])
     set_first_valid_url(data, 'photo', row[19])
-    set_first_valid_url(data, 'video', row[20])
+    collect_valid_urls(data, 'video', row[20])
 
     set_longest_string(data, 'blurb', row[7])
     set_longest_string(data, 'deal', row[13])
