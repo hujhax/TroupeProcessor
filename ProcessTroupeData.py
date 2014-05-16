@@ -106,8 +106,6 @@ def process_row(troupe_dict, row):
 
     set_yes_no_field(data, 'performed_before', row[11])
 
-    # TODO: convert videos to a set
-    # TODO: incorporate the "have you ever performed before?" flag
     return data
 
 
