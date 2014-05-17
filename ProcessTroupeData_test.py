@@ -190,7 +190,7 @@ class ValidatePageGenerator(unittest.TestCase):
         """Cast lists should show up alphabetized and formatted."""
 
         troupe_info = {"cast": {"a a", "c c", "b b"}}
-        y_strings = {"{{Unbulleted list | [[a a]] | [[b b]] | [[c c]] }}"}
+        y_strings = {"{{ Unbulleted list | [[a a]] | [[b b]] | [[c c]] }}"}
         self.validate_page_inclusions(troupe_info, y_strings)
 
     def test_duos(self):
