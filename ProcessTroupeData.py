@@ -146,6 +146,12 @@ def create_troupe_page(troupe_name, troupe_data, templates):
     return templates["troupe"].format(**troupe_data)
 
 
+# direct access to the page generator, for testing
+def create_test_page(troupe_name, troupe_data):
+    templates = load_template_files()
+    # print create_troupe_page(troupe_name, troupe_data, templates)
+    return create_troupe_page(troupe_name, troupe_data, templates)
+
 if __name__ == '__main__':
     import sys
     if sys.argv[1:]:
