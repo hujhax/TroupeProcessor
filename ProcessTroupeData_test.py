@@ -120,12 +120,16 @@ class ValidateDatabaseProcessor(unittest.TestCase):
 class ValidatePageGenerator(unittest.TestCase):
 
     def validate_page_inclusions(self, troupe_data, yes_strings={},
-                                 no_strings={}):
+                                 no_strings={}, debug_output=False):
         if not 'name' in troupe_data:
             troupe_data['name'] = "test_name"
 
         test_page = ProcessTroupeData.create_test_page(troupe_data['name'],
                                                        troupe_data)
+
+        if (debug_output):
+            print test_page
+
         {self.assertTrue(test_string in test_page)
             for test_string in yes_strings}
 
