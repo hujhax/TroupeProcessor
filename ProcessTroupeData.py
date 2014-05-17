@@ -159,6 +159,11 @@ def create_troupe_page(troupe_name, troupe_data, templates):
         troupe_data['summary_section'] = \
             templates['summary'].format(**troupe_data)
 
+    if 'cast' in troupe_data:
+        troupe_data['cast_list'] = \
+            "{{{{Unbulleted list | [[" + \
+            "]] | [[".join(sorted(troupe_data['cast'])) + "]] }}}}"
+
     return templates["troupe"].format(**troupe_data)
 
 
