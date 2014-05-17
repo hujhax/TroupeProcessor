@@ -217,6 +217,18 @@ def troupe_name_to_file_name(troupe_name, subdir, extension):
         "".join(x for x in troupe_name if x.isalnum()) +\
         extension
 
+
+def download_troupe_pics(filename):
+    troupe_dict = process_troupe_data(filename)
+    print troupe_dict
+    for troupe_name, troupe_data in troupe_dict.iteritems():
+        import os
+        import urllib
+        _, file_extension = os.path.splitext(troupe_data['photo'])
+        file_name = troupe_name_to_file_name(troupe_name, "pics",
+                                             file_extension)
+        urllib.urlretrieve(troupe_data['photo'], file_name)
+
 if __name__ == '__main__':
     import sys
     if sys.argv[1:]:
