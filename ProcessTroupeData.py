@@ -164,6 +164,17 @@ def create_troupe_page(troupe_name, troupe_data, templates):
             "{{{{Unbulleted list | [[" + \
             "]] | [[".join(sorted(troupe_data['cast'])) + "]] }}}}"
 
+    troupe_data['is_or_was'] = "was"
+
+    if not 'start_year' in troupe_data:
+        troupe_data['start_year'] = "???"
+    if not 'end_year' in troupe_data:
+        troupe_data['end_year'] = "???"
+
+    if troupe_data['end_year'] == '2014':
+        troupe_data['end_year'] = "Present"
+        troupe_data['is_or_was'] = "is"
+
     return templates["troupe"].format(**troupe_data)
 
 
