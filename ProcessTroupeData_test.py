@@ -116,5 +116,93 @@ class ValidateDatabaseProcessor(unittest.TestCase):
         self.validate_troupe_data("test/BlurbDealYears.ods", "Blurb",
                                   test_deal)
 
+
+class ValidatePageGenerator(unittest.TestCase):
+
+    def validate_page_inclusions(self, troupe_data, yes_strings={},
+                                 no_strings={}):
+        if not 'name' in troupe_data:
+            troupe_data['name'] = "test_name"
+
+        test_page = ProcessTroupeData.create_test_page(troupe_data['name'],
+                                                       troupe_data)
+        {self.assertTrue(test_string in test_page)
+            for test_string in yes_strings}
+
+    def test_blank_dict(self):
+        """Blank dictionary fields should not throw off the page generator."""
+
+        self.validate_page_inclusions({})
+
+    def test_simplest_dict(self):
+        """Simple troupe info should omit all optional sections."""
+
+        troupe_info = {"name": "bob"}
+        yes_strings = {"???-???", "'''bob''' was an improv troupe",
+                       "[[Category:Troupes]]"}
+        no_strings = {"[[Category:Active]]", "== Press Blurb ==",
+                      "== ""What's Your Deal?"" ==", "== Media ==",
+                      "== Summary =="}
+        self.validate_page_inclusions(troupe_info, yes_strings, no_strings)
+
+    def test_normal_years(self):
+        """Non-2014 years should show up in the resulting 'inactive' page."""
+
+        troupe_info = {"start_year": "2010", "end_year": "2012"}
+        yes_strings = {"2010-2012", "was an improv troupe"}
+        no_strings = {"[[Category:Active]]"}
+        self.validate_page_inclusions(troupe_info, yes_strings, no_strings)
+
+    def test_current_year(self):
+        """2014 should show up as "Present" in the "active" page."""
+
+        troupe_info = {"start_year": "2010", "end_year": "2014"}
+        yes_strings = {"2010-Present", "is an improv troupe",
+                       "[[Category:Active]]"}
+        self.validate_page_inclusions(troupe_info, yes_strings)
+
+    def test_blurb(self):
+        """Blurb section should show up correctly."""
+
+        troupe_info = {"blurb": "They like to move it",
+                       "blurb_year": "2002"}
+        yes_strings = {"== Press Blurb ==", "They like to move it",
+                       "taken from a 2002 application", "== Summary =="}
+        self.validate_page_inclusions(troupe_info, yes_strings)
+
+    def test_deal(self):
+        """Deal section should show up correctly."""
+
+        troupe_info = {"deal": "They like to move it",
+                       "deal_year": "2002"}
+        yes_strings = {"What's Your Deal?", "They like to move it",
+                       "on a 2002 application", "== Summary =="}
+        self.validate_page_inclusions(troupe_info, yes_strings)
+
+    def test_cast(self):
+        """Cast lists should show up alphabetized and formatted."""
+
+        troupe_info = {"cast": {"a a", "c c", "b b"}}
+        y_strings = {"{{{{Unbulleted list | [[a a]] | [[b b]] | [[c c]] }}}}"}
+        self.validate_page_inclusions(troupe_info, y_strings)
+
+    def test_duos(self):
+        """The duo category should only show up for a cast size of 2."""
+
+        duo_info = {"cast": {"a a", "c c"}}
+        no_duo_info = {"cast": {"a a", "c c", "b b"}}
+        duo_category = {"[[Category:Duos]]"}
+        self.validate_page_inclusions(duo_info, duo_category)
+        self.validate_page_inclusions(no_duo_info, no_strings=duo_category)
+
+    def test_videos(self):
+        """The set of videos should translate to a bulleted list of videos."""
+
+        troupe_info = {"video": {"video1", "video2"}}
+        yes_strings = {"== Media ==", "video1", "video1", "Video #1",
+                       "Video #2"}
+        self.validate_page_inclusions(troupe_info, yes_strings)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
