@@ -161,8 +161,8 @@ def create_troupe_page(troupe_name, troupe_data, templates):
 
     if 'cast' in troupe_data:
         troupe_data['cast_list'] = \
-            "{{{{Unbulleted list | [[" + \
-            "]] | [[".join(sorted(troupe_data['cast'])) + "]] }}}}"
+            "{{ Unbulleted list | [[" + \
+            "]] | [[".join(sorted(troupe_data['cast'])) + "]] }}"
 
     troupe_data['is_or_was'] = "was"
 
