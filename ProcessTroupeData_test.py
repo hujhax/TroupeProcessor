@@ -218,5 +218,19 @@ class ValidatePageGenerator(unittest.TestCase):
                        "The troupe's web site."}
         self.validate_page_inclusions(troupe_info, yes_strings)
 
+    def test_single_year_display(self):
+        one_year = {'start_year': "2010", 'end_year': "2010"}
+        one_yes = {"2010"}
+        one_no = {"2010-2010"}
+        self.validate_page_inclusions(one_year, one_yes, one_no)
+
+        two_years = {'start_year': "2010", 'end_year': "2012"}
+        two_yes = {"2010-2012"}
+        self.validate_page_inclusions(two_years, two_yes)
+
+        this_year = {'start_year': "2014", 'end_year': "2014"}
+        this_yes = {"2014-Present"}
+        self.validate_page_inclusions(this_year, this_yes)
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
