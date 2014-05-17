@@ -145,7 +145,7 @@ class ValidatePageGenerator(unittest.TestCase):
         """Simple troupe info should omit all optional sections."""
 
         troupe_info = {"name": "bob"}
-        yes_strings = {"???-???", "'''bob''' was an improv troupe",
+        yes_strings = {"???", "'''bob''' was an improv troupe",
                        "[[Category:Troupes]]"}
         no_strings = {"[[Category:Active]]", "== Press Blurb ==",
                       "== ""What's Your Deal?"" ==", "== Media ==",
