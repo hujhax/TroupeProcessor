@@ -142,6 +142,7 @@ def create_troupe_page(troupe_name, troupe_data, templates):
     troupe_data['summary_section'] = ""
     troupe_data['cast_list'] = ""
     troupe_data['media_section'] = ""
+    troupe_data['more_info_section'] = ""
 
     show_summary = False
 
@@ -158,6 +159,10 @@ def create_troupe_page(troupe_name, troupe_data, templates):
     if show_summary:
         troupe_data['summary_section'] = \
             templates['summary'].format(**troupe_data)
+
+    if 'site' in troupe_data and troupe_data['site']:
+        troupe_data['more_info_section'] = \
+            templates['more_info'].format(**troupe_data)
 
     if 'cast' in troupe_data:
         troupe_data['cast_list'] = \
