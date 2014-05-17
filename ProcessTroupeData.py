@@ -36,10 +36,11 @@ def collect_valid_urls(data, field_name, new_string):
 
 def set_longest_string(data, field_name, new_string):
     if not new_string:
-        return
+        return False
     if field_name in data and len(data[field_name]) > len(new_string):
-        return
+        return False
     data[field_name] = new_string
+    return True
 
 
 def collate_cast(data, field_name, new_string):
@@ -96,8 +97,10 @@ def process_row(troupe_dict, row):
     set_first_valid_url(data, 'photo', row[19])
     collect_valid_urls(data, 'video', row[20])
 
-    set_longest_string(data, 'blurb', row[7])
-    set_longest_string(data, 'deal', row[13])
+    if set_longest_string(data, 'blurb', row[7]):
+        data['blurb_year'] = row[22]
+    if set_longest_string(data, 'deal', row[13]):
+        data['deal_year'] = row[22]
 
     collate_cast(data, 'cast', row[4])
 
