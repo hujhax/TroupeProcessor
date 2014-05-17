@@ -13,7 +13,7 @@ def load_troupe_info(filename):
     from ODSReader import ODSReader
     doc = ODSReader(filename)
     troupeDatabase = doc.getSheet("avail")
-    return troupeDatabase
+    return troupeDatabase[1:]  # remove headers
 
 
 def is_url(string):
@@ -113,7 +113,7 @@ def process_row(troupe_dict, row):
 
 
 def process_troupe_data(filename):
-    table = load_troupe_info(filename)[1:]  # remove headers
+    table = load_troupe_info(filename)
     troupe_dict = {}
     for row in table:
         if row[1]:
