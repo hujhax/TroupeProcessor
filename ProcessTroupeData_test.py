@@ -145,7 +145,7 @@ class ValidatePageGenerator(unittest.TestCase):
                        "[[Category:Troupes]]"}
         no_strings = {"[[Category:Active]]", "== Press Blurb ==",
                       "== ""What's Your Deal?"" ==", "== Media ==",
-                      "== Summary =="}
+                      "== Summary ==", "== More Information =="}
         self.validate_page_inclusions(troupe_info, yes_strings, no_strings)
 
     def test_normal_years(self):
@@ -206,6 +206,13 @@ class ValidatePageGenerator(unittest.TestCase):
                        "Video #2"}
         self.validate_page_inclusions(troupe_info, yes_strings)
 
+    def test_site(self):
+        """We should show the troupe's web site, if available."""
+
+        troupe_info = {"site": "http://www.mysite.com"}
+        yes_strings = {"== More Information ==", "http://www.mysite.com",
+                       "The troupe's web site."}
+        self.validate_page_inclusions(troupe_info, yes_strings)
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
