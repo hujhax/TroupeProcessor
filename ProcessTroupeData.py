@@ -212,6 +212,11 @@ def create_troupe_pages(filename):
     return(pages_dict)
 
 
+def troupe_name_to_file_name(troupe_name, subdir, extension):
+    return ".\\output\\" + subdir + "\\" +\
+        "".join(x for x in troupe_name if x.isalnum()) +\
+        extension
+
 if __name__ == '__main__':
     import sys
     if sys.argv[1:]:
