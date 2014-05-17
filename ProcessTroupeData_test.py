@@ -129,6 +129,9 @@ class ValidatePageGenerator(unittest.TestCase):
         {self.assertTrue(test_string in test_page)
             for test_string in yes_strings}
 
+        {self.assertTrue(test_string not in test_page)
+            for test_string in no_strings}
+
     def test_blank_dict(self):
         """Blank dictionary fields should not throw off the page generator."""
 
