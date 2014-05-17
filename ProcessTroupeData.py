@@ -143,6 +143,22 @@ def create_troupe_page(troupe_name, troupe_data, templates):
     troupe_data['cast_list'] = ""
     troupe_data['media_section'] = ""
 
+    show_summary = False
+
+    if 'blurb' in troupe_data and troupe_data['blurb']:
+        show_summary = True
+        troupe_data['blurb_section'] = \
+            templates['blurb'].format(**troupe_data)
+
+    if 'deal' in troupe_data and troupe_data['deal']:
+        show_summary = True
+        troupe_data['deal_section'] = \
+            templates['deal'].format(**troupe_data)
+
+    if show_summary:
+        troupe_data['summary_section'] = \
+            templates['summary'].format(**troupe_data)
+
     return templates["troupe"].format(**troupe_data)
 
 
