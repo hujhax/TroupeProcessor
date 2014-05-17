@@ -134,6 +134,18 @@ def load_template_files():
     os.chdir(saved_path)
     return templates
 
+
+def create_troupe_page(troupe_name, troupe_data, templates):
+    troupe_data['name'] = troupe_name
+    troupe_data['blurb_section'] = ""
+    troupe_data['deal_section'] = ""
+    troupe_data['summary_section'] = ""
+    troupe_data['cast_list'] = ""
+    troupe_data['media_section'] = ""
+
+    return templates["troupe"].format(**troupe_data)
+
+
 if __name__ == '__main__':
     import sys
     if sys.argv[1:]:
