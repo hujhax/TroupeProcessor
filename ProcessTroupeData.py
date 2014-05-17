@@ -181,6 +181,14 @@ def create_troupe_page(troupe_name, troupe_data, templates):
                        for index, url in enumerate(troupe_data['video'])})
         troupe_data['media_section'] = \
             templates['media'].format(**troupe_data)
+
+    troupe_data['other_categories'] = ""
+
+    if troupe_data['is_or_was'] == 'is':
+        troupe_data['other_categories'] += "\n[[Category:Active]]"
+    if 'cast' in troupe_data and len(troupe_data['cast']) == 2:
+        troupe_data['other_categories'] += "\n[[Category:Duos]]"
+
     return templates["troupe"].format(**troupe_data)
 
 
