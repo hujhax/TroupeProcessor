@@ -7,4 +7,4 @@
 
 '''{name}''' {is_or_was} an improv troupe.
 
-{summary_section}{media_section}[[Category:Troupes]]{other_categories}
+{summary_section}{media_section}{more_info_section}[[Category:Troupes]]{other_categories}
