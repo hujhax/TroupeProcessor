@@ -182,7 +182,7 @@ def create_troupe_page(troupe_name, troupe_data, templates):
 
     if 'video' in troupe_data:
         troupe_data['video_list'] = \
-            "\n".join({"* [" + url + " Video #" + str(index+1) + "]"
+            "\n".join({"* [" + url + " Video #" + str(index + 1) + "]"
                        for index, url in enumerate(troupe_data['video'])})
         troupe_data['media_section'] = \
             templates['media'].format(**troupe_data)
