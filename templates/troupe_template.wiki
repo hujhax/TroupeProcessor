@@ -1,0 +1,10 @@
+﻿{{{{Infobox Troupe
+|Name	=		{name}
+|Picture	=	{name}.jpg
+|Cast	=	{cast_list}
+|Years	=		{start_year}-{end_year}
+}}}}
+
+'''{name}''' {is_or_was} an improv troupe.
+
+{summary_section}{media_section}[[Category:Troupes]]{other_categories}

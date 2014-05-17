@@ -1,0 +1,2 @@
+﻿== Summary ==
+{blurb_section}{deal_section}

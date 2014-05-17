@@ -1,0 +1,3 @@
+﻿== Press Blurb ==
+Their press blurb, taken from a {blurb_year} application to perform at [[The Hideout Theatre]]:<blockquote>{blurb}</blockquote>
+
