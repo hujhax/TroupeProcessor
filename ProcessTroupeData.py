@@ -180,6 +180,12 @@ def create_troupe_page(troupe_name, troupe_data, templates):
         troupe_data['end_year'] = "Present"
         troupe_data['is_or_was'] = "is"
 
+    if troupe_data['start_year'] == troupe_data['end_year']:
+        troupe_data['years'] = troupe_data['start_year']
+    else:
+        troupe_data['years'] = troupe_data['start_year'] + "-" +\
+            troupe_data['end_year']
+
     if 'video' in troupe_data:
         troupe_data['video_list'] = \
             "\n".join({"* [" + url + " Video #" + str(index + 1) + "]"

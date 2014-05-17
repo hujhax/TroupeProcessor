@@ -2,7 +2,7 @@
 |Name	=		{name}
 |Picture	=	{name}.jpg
 |Cast	=	{cast_list}
-|Years	=		{start_year}-{end_year}
+|Years	=		{years}
 }}}}
 
 '''{name}''' {is_or_was} an improv troupe.
