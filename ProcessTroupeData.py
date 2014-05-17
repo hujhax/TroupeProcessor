@@ -120,6 +120,20 @@ def process_troupe_data(filename):
             troupe_dict[row[1]] = process_row(troupe_dict, row)
     return troupe_dict
 
+
+def load_template_files():
+    import os
+    import glob
+    templates = {}
+    saved_path = os.getcwd()
+    os.chdir(".\\templates")
+    for file_name in glob.glob("*_template.wiki"):
+        field_name = file_name.replace("_template.wiki", "")
+        file_handle = open(file_name)
+        templates[field_name] = file_handle.read()
+    os.chdir(saved_path)
+    return templates
+
 if __name__ == '__main__':
     import sys
     if sys.argv[1:]:
