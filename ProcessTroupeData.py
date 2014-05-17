@@ -229,9 +229,19 @@ def download_troupe_pics(filename):
                                              file_extension)
         urllib.urlretrieve(troupe_data['photo'], file_name)
 
+
+def output_troupe_pages(filename):
+    pages_dict = create_troupe_pages(filename)
+    for troupe_name, troupe_page in pages_dict.iteritems():
+        file_name = troupe_name_to_file_name(troupe_name, "pages",
+                                             ".wiki")
+        # save troupe page to file name
+        with open(file_name, "w") as text_file:
+            text_file.write(troupe_page)
+
 if __name__ == '__main__':
     import sys
     if sys.argv[1:]:
-        print process_troupe_data(sys.argv[1])
+        print output_troupe_pages(sys.argv[1])
     else:
         print __doc__
