@@ -2,7 +2,7 @@ import ProcessTroupeData
 import unittest
 
 
-class SimpleValidDatabases(unittest.TestCase):
+class ValidateDatabaseProcessor(unittest.TestCase):
 
     def validate_troupe_data(self, file_name, troupe_name, troupe_data,
                              num_troupes=None):
