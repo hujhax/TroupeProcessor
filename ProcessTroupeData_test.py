@@ -105,5 +105,16 @@ class SimpleValidDatabases(unittest.TestCase):
         self.validate_troupe_data("test/PerformedBefore.ods", "yestroupe2",
                                   test_3)
 
+    def test_blurb_deal_years(self):
+        """Store the year associated with the longest blurb/deal."""
+
+        test_blurb = [("blurb_year", "2007")]
+        test_deal = [("deal_year", "2010")]
+
+        self.validate_troupe_data("test/BlurbDealYears.ods", "Deal",
+                                  test_blurb)
+        self.validate_troupe_data("test/BlurbDealYears.ods", "Blurb",
+                                  test_deal)
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
