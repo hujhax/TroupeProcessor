@@ -219,7 +219,8 @@ def create_test_page(troupe_name, troupe_data):
 def create_troupe_pages(filename):
     troupe_dict = process_troupe_data(filename)
     templates = load_template_files()
-    pages_dict = {troupe_name: create_troupe_page(troupe_name, troupe_data, templates)
+    pages_dict = {troupe_name: create_troupe_page(troupe_name, troupe_data,
+                  templates)
                   for troupe_name, troupe_data in troupe_dict.iteritems()}
     return(pages_dict)
 
