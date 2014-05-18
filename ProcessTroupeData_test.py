@@ -128,7 +128,7 @@ class ValidatePageGenerator(unittest.TestCase):
                                                        troupe_data)
 
         if (debug_output):
-            print test_page
+            print test_page.encode('utf8')
 
         {self.assertTrue(test_string in test_page)
             for test_string in yes_strings}
