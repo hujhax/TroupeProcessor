@@ -255,6 +255,6 @@ def output_troupe_pages(filename):
 if __name__ == '__main__':
     import sys
     if sys.argv[1:]:
-        print output_troupe_pages(sys.argv[1])
+        output_troupe_pages(sys.argv[1])
     else:
         print __doc__
