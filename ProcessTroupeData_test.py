@@ -233,5 +233,11 @@ class ValidatePageGenerator(unittest.TestCase):
         this_yes = {"2014-Present"}
         self.validate_page_inclusions(this_year, this_yes)
 
+    def test_unicode(self):
+        """The processor shouldn't choke on weird unicode strings."""
+
+        troupe_info = {"blurb": u'La Pe\xf1a', "blurb_year": "2001"}
+        self.validate_page_inclusions(troupe_info)
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
