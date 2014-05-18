@@ -250,7 +250,7 @@ def output_troupe_pages(filename):
                                              ".wiki")
         # save troupe page to file name
         with open(file_name, "w") as text_file:
-            text_file.write(troupe_page)
+            text_file.write(troupe_page.encode('utf8'))
 
 if __name__ == '__main__':
     import sys
