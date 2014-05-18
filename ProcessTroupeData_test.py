@@ -239,5 +239,15 @@ class ValidatePageGenerator(unittest.TestCase):
         troupe_info = {"blurb": u'La Pe\xf1a', "blurb_year": "2001"}
         self.validate_page_inclusions(troupe_info)
 
+    def test_fixed_carriage_returns(self):
+        """We should change returns to <br> in the blurb/deal fields."""
+
+        troupe_info = {"blurb": "a\nb", "deal": "c\nd", "blurb_year": "2011",
+                       "deal_year": "2010"}
+        yes_strings = {"a<br>b", "c<br>d"}
+        no_strings = {"a\nb", "c\nd"}
+        self.validate_page_inclusions(troupe_info, yes_strings, no_strings)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
