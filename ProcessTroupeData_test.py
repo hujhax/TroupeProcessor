@@ -219,6 +219,7 @@ class ValidatePageGenerator(unittest.TestCase):
         self.validate_page_inclusions(troupe_info, yes_strings)
 
     def test_single_year_display(self):
+        """We should display "2010", not "2010-2010"."""
         one_year = {'start_year': "2010", 'end_year': "2010"}
         one_yes = {"2010"}
         one_no = {"2010-2010"}
