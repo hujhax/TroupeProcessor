@@ -135,6 +135,10 @@ def load_template_files():
     return templates
 
 
+def fix_carriage_returns(string):
+    return string.replace('\n', '<br>')
+
+
 def create_troupe_page(troupe_name, troupe_data, templates):
     troupe_data['name'] = troupe_name
     troupe_data['blurb_section'] = ""
@@ -148,11 +152,13 @@ def create_troupe_page(troupe_name, troupe_data, templates):
 
     if 'blurb' in troupe_data and troupe_data['blurb']:
         show_summary = True
+        troupe_data['blurb'] = fix_carriage_returns(troupe_data['blurb'])
         troupe_data['blurb_section'] = \
             templates['blurb'].format(**troupe_data)
 
     if 'deal' in troupe_data and troupe_data['deal']:
         show_summary = True
+        troupe_data['deal'] = fix_carriage_returns(troupe_data['deal'])
         troupe_data['deal_section'] = \
             templates['deal'].format(**troupe_data)
 
