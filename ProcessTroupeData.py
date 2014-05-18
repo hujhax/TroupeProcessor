@@ -130,7 +130,7 @@ def load_template_files():
     for file_name in glob.glob("*_template.wiki"):
         field_name = file_name.replace("_template.wiki", "")
         file_handle = open(file_name)
-        templates[field_name] = file_handle.read()
+        templates[field_name] = file_handle.read().decode('utf-8')
     os.chdir(saved_path)
     return templates
 
