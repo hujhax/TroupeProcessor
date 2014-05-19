@@ -254,6 +254,15 @@ def download_troupe_pics(filename):
         urllib.urlretrieve(troupe_data['photo'], file_name)
 
 
+# delete all the files in the output-pages directory
+def init_output_directories():
+    import os
+
+    for root, dirs, files in os.walk('.\\output\\pages'):
+        for f in files:
+            os.unlink(os.path.join(root, f))
+
+
 def standardize_troupe_name(string):
     return "".join(x for x in string if x.isalnum()).lower()
 
@@ -274,6 +283,7 @@ def never_performed(troupe_page):
 
 
 def output_troupe_pages(filename):
+    init_output_directories()
     pages_dict = create_troupe_pages(filename)
     extant_troupes = get_extant_troupes()
     for troupe_name, troupe_page in pages_dict.iteritems():
