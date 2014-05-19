@@ -243,10 +243,31 @@ def download_troupe_pics(filename):
         urllib.urlretrieve(troupe_data['photo'], file_name)
 
 
+def standardize_troupe_name(string):
+    return "".join(x for x in string if x.isalnum()).lower()
+
+
+def get_extant_troupes():
+    file_handle = open("extant_troupes.txt", "r")
+    extant_troupes = {standardize_troupe_name(troupe_name)
+                      for troupe_name in file_handle}
+    return extant_troupes
+
+
+def is_extant_troupe(troupe_name, extant_troupes):
+    return standardize_troupe_name(troupe_name) in extant_troupes
+
+
 def output_troupe_pages(filename):
     pages_dict = create_troupe_pages(filename)
+    extant_troupes = get_extant_troupes()
     for troupe_name, troupe_page in pages_dict.iteritems():
-        file_name = troupe_name_to_file_name(troupe_name, "pages",
+        if is_extant_troupe(troupe_name, extant_troupes):
+            subdir = "pages\extant"
+        else:
+            subdir = "pages"
+        # TODO: Add separate folder for "never performed before"
+        file_name = troupe_name_to_file_name(troupe_name, subdir,
                                              ".wiki")
         # save troupe page to file name
         with open(file_name, "w") as text_file:
