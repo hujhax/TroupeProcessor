@@ -212,6 +212,10 @@ def create_troupe_page(troupe_name, troupe_data, templates):
         troupe_data['other_categories'] += "\n[[Category:Active]]"
     if 'cast' in troupe_data and len(troupe_data['cast']) == 2:
         troupe_data['other_categories'] += "\n[[Category:Duos]]"
+    if 'performed_before' in troupe_data and troupe_data['performed_before'] == 'y':
+        pass
+    else:
+        troupe_data['other_categories'] += "\n[[Category:Never Performed]]"
 
     return templates["troupe"].format(**troupe_data)
 
@@ -265,15 +269,21 @@ def is_extant_troupe(troupe_name, extant_troupes):
     return standardize_troupe_name(troupe_name) in extant_troupes
 
 
+def never_performed(troupe_page):
+    return troupe_page.find("[[Category:Never Performed]]") >= 0
+
+
 def output_troupe_pages(filename):
     pages_dict = create_troupe_pages(filename)
     extant_troupes = get_extant_troupes()
     for troupe_name, troupe_page in pages_dict.iteritems():
         if is_extant_troupe(troupe_name, extant_troupes):
             subdir = "pages\extant"
+        elif never_performed(troupe_page):
+            subdir = "pages\\never"
         else:
             subdir = "pages"
-        # TODO: Add separate folder for "never performed before"
+
         file_name = troupe_name_to_file_name(troupe_name, subdir,
                                              ".wiki")
         # save troupe page to file name
