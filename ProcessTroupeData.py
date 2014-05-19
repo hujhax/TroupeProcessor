@@ -76,15 +76,22 @@ def set_end_year(data, field_name, new_string):
 
 
 def set_yes_no_field(data, field_name, new_string):
+    new_string = new_string.encode('utf8').lower()
+
+    result = 'n'
+
     if not new_string:
-        return
-    if new_string.find('n') != -1:  # "no"
-        return
-    if new_string.find('m') != -1:  # "maybe"
-        return
-    if new_string.find('y') == -1:  # no "yes"
-        return
-    data[field_name] = 'y'
+        pass
+    elif new_string.find('yes') >= 0:
+        result = 'y'
+    elif new_string.find('n') >= 0:  # "no"
+        pass
+    elif new_string.find('m') >= 0:  # "maybe"
+        pass
+    elif new_string.find('y') == -1:  # no "yes"
+        result = 'y'
+
+    data[field_name] = result
 
 
 def process_row(troupe_dict, row):
