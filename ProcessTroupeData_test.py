@@ -95,7 +95,7 @@ class ValidateDatabaseProcessor(unittest.TestCase):
         """We should note if the troupe has ever performed before."""
 
         test_1 = [("performed_before", "y")]
-        test_2 = [("performed_before", "no value")]
+        test_2 = [("performed_before", "n")]
         test_3 = [("performed_before", "y")]
 
         self.validate_troupe_data("test/PerformedBefore.ods", "yestroupe1",

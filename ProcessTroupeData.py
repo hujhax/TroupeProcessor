@@ -76,6 +76,9 @@ def set_end_year(data, field_name, new_string):
 
 
 def set_yes_no_field(data, field_name, new_string):
+    if field_name in data and data[field_name] == 'y':
+        return
+
     new_string = new_string.encode('utf8').lower()
 
     result = 'n'
