@@ -240,11 +240,11 @@ class ValidatePageGenerator(unittest.TestCase):
         self.validate_page_inclusions(troupe_info)
 
     def test_fixed_carriage_returns(self):
-        """We should change returns to <br> in the blurb/deal fields."""
+        """We should duplicate carriage returns in the blurb/deal fields."""
 
         troupe_info = {"blurb": "a\nb", "deal": "c\nd", "blurb_year": "2011",
                        "deal_year": "2010"}
-        yes_strings = {"a<br>b", "c<br>d"}
+        yes_strings = {"a\n\nb", "c\n\nd"}
         no_strings = {"a\nb", "c\nd"}
         self.validate_page_inclusions(troupe_info, yes_strings, no_strings)
 

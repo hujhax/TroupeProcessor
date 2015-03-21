@@ -143,7 +143,7 @@ def load_template_files():
 
 
 def fix_carriage_returns(string):
-    return string.replace('\n', '<br>')
+    return string.replace('\n', '\n\n')
 
 
 def create_troupe_page(troupe_name, troupe_data, templates):
