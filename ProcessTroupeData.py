@@ -287,6 +287,8 @@ def output_troupe_pages(filename):
     pages_dict = create_troupe_pages(filename)
     extant_troupes = get_extant_troupes()
     for troupe_name, troupe_page in pages_dict.iteritems():
+        from unidecode import unidecode
+
         if is_extant_troupe(troupe_name, extant_troupes):
             subdir = "pages\extant"
         elif never_performed(troupe_page):
@@ -298,11 +300,11 @@ def output_troupe_pages(filename):
                                              ".wiki")
         # save troupe page to file name
         with open(file_name, "w") as text_file:
-            text_file.write(troupe_page.encode('utf8'))
+            text_file.write(unidecode(troupe_page))
 
 if __name__ == '__main__':
     import sys
     if sys.argv[1:]:
         output_troupe_pages(sys.argv[1])
     else:
-        print __doc__
+        download_troupe_pics("TroupeData.ods")
