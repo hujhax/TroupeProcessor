@@ -244,14 +244,18 @@ def troupe_name_to_file_name(troupe_name, subdir, extension):
 
 def download_troupe_pics(filename):
     troupe_dict = process_troupe_data(filename)
-    print troupe_dict
     for troupe_name, troupe_data in troupe_dict.iteritems():
-        import os
-        import urllib
-        _, file_extension = os.path.splitext(troupe_data['photo'])
-        file_name = troupe_name_to_file_name(troupe_name, "pics",
-                                             file_extension)
-        urllib.urlretrieve(troupe_data['photo'], file_name)
+        if 'photo' in troupe_data:
+            import os
+            import urllib
+            _, file_extension = os.path.splitext(troupe_data['photo'])
+            file_name = troupe_name_to_file_name(troupe_name, "pics",
+                                                 file_extension)
+            try:
+                urllib.urlretrieve(troupe_data['photo'], file_name)
+            except:
+                e = sys.exc_info()[0]
+                print( "<p>Error: %s</p>" % e )
 
 
 # delete all the files in the output-pages directory
