@@ -192,7 +192,7 @@ def create_troupe_page(troupe_name, troupe_data, templates):
     if not 'end_year' in troupe_data:
         troupe_data['end_year'] = "???"
 
-    if troupe_data['end_year'] == '2014':
+    if troupe_data['end_year'] == '2015':
         troupe_data['end_year'] = "Present"
         troupe_data['is_or_was'] = "is"
 
