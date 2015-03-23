@@ -103,9 +103,9 @@ def process_row(troupe_dict, row):
     else:
         data = {}
 
-    set_first_valid_url(data, 'site', row[2])
-    set_first_valid_url(data, 'photo', row[19])
-    collect_valid_urls(data, 'video', row[20])
+    set_first_valid_url(data, 'site', row[2].replace('https', 'http'))
+    set_first_valid_url(data, 'photo', row[19].replace('https', 'http'))
+    collect_valid_urls(data, 'video', row[20].replace('https', 'http'))
 
     if set_longest_string(data, 'blurb', row[7]):
         data['blurb_year'] = row[22]
