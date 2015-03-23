@@ -213,8 +213,10 @@ def create_troupe_page(troupe_name, troupe_data, templates):
 
     if troupe_data['is_or_was'] == 'is':
         troupe_data['other_categories'] += "\n[[Category:Active]]"
+    troupe_data['troupe_or_duo'] = 'troupe'
     if 'cast' in troupe_data and len(troupe_data['cast']) == 2:
         troupe_data['other_categories'] += "\n[[Category:Duos]]"
+        troupe_data['troupe_or_duo'] = 'duo'
     if 'performed_before' in troupe_data and troupe_data['performed_before'] == 'y':
         pass
     else:

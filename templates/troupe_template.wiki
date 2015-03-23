@@ -5,7 +5,7 @@
 |Years	=		{years}
 }}}}
 
-'''{name}''' {is_or_was} an improv troupe.
+'''{name}''' {is_or_was} an improv {troupe_or_duo}.
 
 {summary_section}{media_section}{more_info_section}[[Category:Troupes]]
 [[Category:Auto-Generated Troupe Pages]]{other_categories}
