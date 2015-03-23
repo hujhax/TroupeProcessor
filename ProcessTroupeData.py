@@ -299,7 +299,7 @@ def output_troupe_pages(filename):
         from unidecode import unidecode
 
         if is_extant_troupe(troupe_name, extant_troupes):
-            subdir = "pages\extant"
+            subdir = "pages\\extant"
         elif never_performed(troupe_page):
             subdir = "pages\\never"
         else:
